@@ -1,0 +1,39 @@
+﻿<Window x:Class="SocialAppViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:SocialAppViewer"
+        Title="Социальная Сеть - Просмотр БД" Height="600" Width="1000">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListBox x:Name="TablesListBox"
+                 Grid.Row="0"
+                 ItemsSource="{Binding TableNames}"
+                 DisplayMemberPath="Key"
+                 SelectedItem="{Binding SelectedTable}"
+                 Margin="5"/>
+
+        <ContentControl Content="{Binding CurrentView}"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Margin="5"/>
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="AddRow" Content="Добавить" Width="100" Margin="5"/>
+            <Button x:Name="DeleteRow" Content="Удалить" Width="100" Margin="5"/>
+            <Button x:Name="SaveChanges" Content="Сохранить" Width="100" Margin="5"/>
+            <Button x:Name="ExportJson" Content="Экспорт JSON" Width="120" Margin="5"/>
+            <Button x:Name="ImportJson" Content="Импорт JSON" Width="120" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
